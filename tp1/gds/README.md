@@ -28,14 +28,15 @@
 
 ### Algormito A* 
 
--En lugar de utilizar una búsqueda en amplitud (BFS), podrías considerar implementar el algoritmo A. A* es una variante de la búsqueda en grafos que utiliza una heurística para priorizar los nodos que probablemente conduzcan más rápido a la solución.
+-En lugar de utilizar una búsqueda en amplitud (BFS), se podría considerar implementar el algoritmo A*. 
+A* es una variante de la búsqueda en grafos que utiliza una heurística para priorizar los nodos que probablemente conduzcan más rápido a la solución.
 
 ### Caché de búsquedas anteriores
 
-- Si es probable que se realicen búsquedas frecuentes entre ciertos pares de actores, puedes considerar implementar una caché que almacene los resultados de búsquedas anteriores para evitar volver a calcularlos.
+- Si es probable que se realicen búsquedas frecuentes entre ciertos pares de actores, se puede implementar una caché que almacene los resultados de búsquedas anteriores para evitar volver a calcularlos.
 
 ### Paralelización
 
-- Si el conjunto de datos es lo suficientemente grande, podrías explorar la posibilidad de paralelizar la búsqueda en múltiples procesos o hilos para acelerar el proceso.
+- Si el conjunto de datos es lo suficientemente grande, podríamos explorar la posibilidad de paralelizar la búsqueda en múltiples procesos o hilos para acelerar el proceso.
 
 
