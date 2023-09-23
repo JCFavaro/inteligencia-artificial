@@ -28,7 +28,7 @@
 
 ### Algormito A* 
 
--En lugar de utilizar una búsqueda en amplitud (BFS), se podría considerar implementar el algoritmo A*. 
+- En lugar de utilizar una búsqueda en amplitud (BFS), se podría considerar implementar el algoritmo A*. 
 A* es una variante de la búsqueda en grafos que utiliza una heurística para priorizar los nodos que probablemente conduzcan más rápido a la solución.
 
 ### Caché de búsquedas anteriores
