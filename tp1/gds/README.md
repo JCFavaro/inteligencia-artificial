@@ -6,9 +6,9 @@
 
 ## Estrategia de Resolución
 
-- Para abordar este problema, se ha implementado una solución basada en el algoritmo de búsqueda en amplitud (BFS). La búsqueda en amplitud permite explorar el espacio de búsqueda de manera sistemática y encuentra la solución óptima en términos de la menor cantidad de pasos (o grados de separación) necesarios para conectar dos actores.
+- Para abordar este problema, se ha implementado una solución basada en el algoritmo de búsqueda en amplitud (BFS) y otra en el algoritmo de A*. La búsqueda en amplitud permite explorar el espacio de búsqueda de manera sistemática y encuentra la solución óptima en términos de la menor cantidad de pasos (o grados de separación) necesarios para conectar dos actores. Y la búsqueda por el algoritmo A* se utiliza para encontrar el camino más corto desde un nodo de inicio hasta un nodo objetivo en un grafo ponderado.
 
-- La implementación del algoritmo se realiza en la función shortest_path del archivo degrees.py. Esta función utiliza una estructura de datos de frontera (ya sea una cola o una pila) para explorar los nodos de manera ordenada, manteniendo un registro de los nodos visitados y el camino actual.
+- La implementación de los algoritmos se realizan en la función shortest_path_BFS y shortest_path_AStar del archivo degrees.py. Esta función utiliza una estructura de datos de frontera (ya sea una cola o una pila) para explorar los nodos de manera ordenada, manteniendo un registro de los nodos visitados y el camino actual.
 
 ## Aplicaciones Similares
 
@@ -25,11 +25,6 @@
 - En el campo de la ciencia de datos, la búsqueda de caminos más cortos es utilizada para analizar trayectorias en diversos dominios. Por ejemplo, en biología, se puede utilizar para estudiar interacciones entre proteínas o rutas metabólicas.
 
 ## Posibles mejoras a este problema
-
-### Algormito A* 
-
-- En lugar de utilizar una búsqueda en amplitud (BFS), se podría considerar implementar el algoritmo A*. 
-A* es una variante de la búsqueda en grafos que utiliza una heurística para priorizar los nodos que probablemente conduzcan más rápido a la solución.
 
 ### Caché de búsquedas anteriores
 
