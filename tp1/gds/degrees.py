@@ -1,7 +1,8 @@
 import csv
+import heapq
 import sys
 
-from util import Node, StackFrontier, QueueFrontier
+from util import Node, PriorityQueueFrontier, StackFrontier, QueueFrontier
 
 # Maps names to a set of corresponding person_ids
 names = {}
@@ -62,14 +63,23 @@ def main():
     load_data(directory)
     print("Data loaded.")
 
+    function = input("Which algorithm do you want to use? 1.BFS 2.A* ")
+    print("\n")
+
     source = person_id_for_name(input("Name: "))
+    print("\n")
     if source is None:
         sys.exit("Person not found.")
     target = person_id_for_name(input("Name: "))
+    print("\n")
     if target is None:
         sys.exit("Person not found.")
 
-    path = shortest_path(source, target)
+    path = 0
+    if function == "1":
+        path = shortest_path_BFS(source, target)
+    elif function == "2": 
+        path = shortest_path_AStar(source, target)
 
     if path is None:
         print("Not connected.")
@@ -83,8 +93,8 @@ def main():
             movie = movies[path[i + 1][0]]["title"]
             print(f"{i + 1}: {person1} and {person2} starred in {movie}")
 
-
-def shortest_path(source, target):
+# BFS
+def shortest_path_BFS(source, target):
     """
     Returns the shortest list of (movie_id, person_id) pairs
     that connect the source to the target.
@@ -135,6 +145,52 @@ def shortest_path(source, target):
 
 
     return None
+
+#A*
+def shortest_path_AStar(source, target):
+    """
+    Returns the shortest list of (movie_id, person_id) pairs
+    that connect the source to the target using A* algorithm.
+
+    If no possible path, returns None.
+    """
+
+    start = Node(state=source, parent=None, action=None)
+    frontier = PriorityQueueFrontier()  
+    frontier.add(start, 0)  # 0 es la prioridad inicial
+
+    visitedNodes = set()
+
+    while not frontier.empty():
+        node = frontier.remove()
+
+        if node.state == target:
+            path = []
+            while node.parent is not None:
+                path.append((node.action, node.state))
+                node = node.parent
+            path.reverse()
+            return path
+
+        visitedNodes.add(node.state)
+
+        neighbors = neighbors_for_person(node.state)
+
+        for action, state in neighbors:
+            if state not in visitedNodes:
+                child = Node(state=state, parent=node, action=action)
+                priority = heuristic(state, target) 
+                frontier.add(child, priority)
+
+    return None
+
+def heuristic(state, target):
+    """
+    Función de heurística que estima la distancia
+    entre la persona actual (state) y la persona objetivo (target).
+    """
+    # Cuanto más películas en común, más cercanos están en la red de actores.
+    return -len(people[state]["movies"].intersection(people[target]["movies"]))
 
 
 def person_id_for_name(name):
