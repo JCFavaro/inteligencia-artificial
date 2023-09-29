@@ -162,7 +162,7 @@ def shortest_path_AStar(source, target):
     visitedNodes = set()
 
     while not frontier.empty():
-        node = frontier.remove()
+        node = frontier.remove() # Removemos nodo con mayor prioridad
 
         if node.state == target:
             path = []
@@ -176,21 +176,25 @@ def shortest_path_AStar(source, target):
 
         neighbors = neighbors_for_person(node.state)
 
+        # Por cada vecino, verificamos que el vecino no ha sido visitado, si es asi creamos nodo child
         for action, state in neighbors:
             if state not in visitedNodes:
                 child = Node(state=state, parent=node, action=action)
                 priority = heuristic(state, target) 
                 frontier.add(child, priority)
-
+    
     return None
 
 def heuristic(state, target):
     """
     Función de heurística que estima la distancia
     entre la persona actual (state) y la persona objetivo (target).
+
+    F. heuristica: ofrece una medida conceptual de la dist entre un estado dado y el estado objetivo
     """
-    # Cuanto más películas en común, más cercanos están en la red de actores.
-    return -len(people[state]["movies"].intersection(people[target]["movies"]))
+    # El - es para priorizar nodos con menos peliculas en comun (seria mas rapido)
+    commonFilms = -len(people[state]["movies"].intersection(people[target]["movies"]))
+    return commonFilms
 
 
 def person_id_for_name(name):
