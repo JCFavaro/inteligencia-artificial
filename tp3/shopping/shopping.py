@@ -31,6 +31,11 @@ def main():
     print(f"True Negative Rate: {100 * specificity:.2f}%")
 
 
+"""
+    Esta función carga los datos de compras desde un archivo CSV y 
+    los convierte en dos listas: una con la evidencia (características) 
+    y otra con las etiquetas (si se realizó una compra o no).
+"""
 def load_data(filename):
     """
     Load shopping data from a CSV file `filename` and convert into a list of
@@ -76,13 +81,17 @@ def load_data(filename):
                 1 if row[16] == "TRUE" else 0
             ]
 
-            label = 1 if row[17] == 'TRUE' else 0  # Convertir a entero
+            label = 1 if row[17] == 'TRUE' else 0  # Convertir a entero (Revenue)
 
             evidence.append(evidence_row)
             labels.append(label)
 
     return evidence, labels
 
+"""
+    Entrena un modelo de clasificación basado en el algoritmo de vecinos más cercanos. 
+    En este caso, se usa k=1, lo que significa que el modelo considerará el vecino más cercano al realizar predicciones.
+"""
 def train_model(evidence, labels):
     """
     Given a list of evidence lists and a list of labels, return a
@@ -93,7 +102,10 @@ def train_model(evidence, labels):
     knn.fit(evidence, labels)
     return knn
 
-
+"""
+    Evalúa el rendimiento del modelo. 
+    Calcula la sensibilidad (tasa de verdaderos positivos) y la especificidad (tasa de verdaderos negativos) del modelo.
+"""
 def evaluate(labels, predictions):
     """
     Given a list of actual labels and a list of predicted labels,
