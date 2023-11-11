@@ -23,8 +23,10 @@ def main():
     model = ""
     # Train model and make predictions
     if int(sys.argv[2]) == 1:
+        print("K-Nearest Neighbors")
         model = train_model_KNN(X_train, y_train)
     else:
+        print("Random Forest")
         model = train_model_Random_Forest(X_train, y_train)
     predictions = model.predict(X_test)
     sensitivity, specificity = evaluate(y_test, predictions)
